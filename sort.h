@@ -1,8 +1,9 @@
 #ifndef SORT_H
 #define SORT_H
 
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
 
 /**
  * struct listint_s - Doubly linked list node
@@ -13,32 +14,28 @@
  */
 typedef struct listint_s
 {
-	const int n;
-	struct listint_s *prev;
-	struct listint_s *next;
+    const int n;
+    struct listint_s *prev;
+    struct listint_s *next;
 } listint_t;
 
-/* print_array.c */
-void print_array(const int *array, size_t size);
+void swap_ints(int *a, int *b);
 
-/* print_list.c */
+void print_array(const int *array, size_t size);
 void print_list(const listint_t *list);
 
-/* 0-bubble_sort.c */
 void bubble_sort(int *array, size_t size);
-
-/* 1-insertion_sort_list.c */
 void insertion_sort_list(listint_t **list);
-
-/* 2-selection_sort.c */
 void selection_sort(int *array, size_t size);
-
-/* 3-quick_sort.c */
 void quick_sort(int *array, size_t size);
-int partition(int *array, int beg, int end, int size);
-void quickSort(int *array, int beg, int end, int size);
 
-/* 100-shell_sort.c */
-void shell_sort(int *array, size_t size);
+/* Implements the Lomuto partition scheme */
+int lomuto_partition(int *array, size_t size, int left, int right);
 
-#endif
+/* Implements quicksort through recursion */
+void lomuto_sort(int *array, size_t size, int left, int right);
+
+/* Sorts an array of integers in ascending order using quicksort */
+void quick_sort(int *array, size_t size);
+
+#endif /* SORT_H */
